@@ -1,5 +1,13 @@
 * text=auto eol=lf
+
+# Windows 批处理必须是 CRLF，否则 set /p 和括号块会出问题
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
 *.png binary
 *.jpg binary
+*.jpeg binary
 *.ico binary
 *.gif binary
+*.webp binary
+*.avif binary
