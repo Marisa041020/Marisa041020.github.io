@@ -1,0 +1,230 @@
+# ==========================================
+# 灯下 · Butterfly 主题配置
+# 只写了需要改的项，其余沿用主题默认值
+# ==========================================
+
+nav:
+  logo:
+  display_title: true
+  display_post_title: true
+  fixed: false
+
+menu:
+  首页: / || fas fa-home
+  归档: /archives/ || fas fa-folder-open
+  标签: /tags/ || fas fa-tags
+  关于: /about/ || fas fa-user
+
+social:
+  fab fa-github: https://github.com/Marisa041020 || GitHub || '#2b2b2b'
+  fas fa-envelope: mailto:hello@example.com || 写信 || '#8c5535'
+
+# ---------- 图片 ----------
+favicon: /img/favicon.svg
+
+avatar:
+  img: /img/avatar.svg
+  effect: false
+
+disable_top_img: false
+default_top_img: /img/banner.svg
+index_img: /img/banner.svg
+archive_img: /img/banner.svg
+tag_img: /img/banner.svg
+footer_img: false
+
+index_top_img_height: 360px
+
+# 站点背景色（纸感）
+background: '#fbfaf7'
+
+# 不启用封面图：没有配图时用卡片会空一块
+cover:
+  index_enable: false
+  aside_enable: false
+  archives_enable: false
+
+# 404 页
+error_404:
+  enable: true
+  subtitle: 这一页没有留下来
+  background: /img/error-page.png
+
+# ---------- 首页 ----------
+subtitle:
+  enable: false
+
+index_layout: 1
+
+# 1 = 显示 description（每篇开头的 description 字段）
+index_post_content:
+  method: 1
+  length: 300
+
+post_meta:
+  page:
+    date_type: created
+    date_format: date
+    categories: false
+    tags: true
+    label: true
+  post:
+    position: left
+    date_type: created
+    date_format: date
+    categories: false
+    tags: true
+    label: true
+
+# ---------- 文章页 ----------
+toc:
+  post: true
+  page: false
+  number: true
+  expand: false
+  style_simple: false
+  scroll_percent: true
+
+post_copyright:
+  enable: false
+
+related_post:
+  enable: true
+  limit: 3
+  date_type: created
+
+post_pagination: 1
+
+# 图片点开放大
+lightbox: medium_zoom
+
+# ---------- 页脚 ----------
+footer:
+  nav:
+  owner:
+    enable: true
+    since: 2026
+  copyright:
+    enable: true
+    version: false
+  custom_text:
+
+# ---------- 侧边栏 ----------
+aside:
+  enable: true
+  hide: false
+  button: true
+  mobile: true
+  position: right
+  display:
+    archive: true
+    tag: true
+    category: false
+  card_author:
+    enable: true
+    description: 白天在中学教历史，晚上写字。
+    button:
+      enable: true
+      icon: fab fa-github
+      text: GitHub
+      link: https://github.com/Marisa041020
+  card_announcement:
+    enable: false
+  card_recent_post:
+    enable: true
+    limit: 5
+    sort: date
+    sort_order:
+  card_newest_comments:
+    enable: false
+  card_categories:
+    enable: false
+  card_tags:
+    enable: true
+    limit: 20
+    color: true
+    orderby: random
+    order: 1
+  card_archives:
+    enable: true
+    type: monthly
+    format: YYYY年MM月
+    order: -1
+    limit: 6
+  card_webinfo:
+    enable: true
+    post_count: true
+    last_push_date: true
+
+# ---------- 按钮与暗色 ----------
+readmode: true
+
+darkmode:
+  enable: true
+  button: true
+  autoChangeMode: 1
+  start: 19
+  end: 6
+
+rightside_scroll_percent: true
+
+# ---------- 搜索 ----------
+search:
+  use: local_search
+  placeholder: 搜点什么
+  local_search:
+    preload: false
+    top_n_per_article: 1
+    unescape: false
+
+# ---------- 其他 ----------
+share:
+  use:
+
+comments:
+  use:
+  count: false
+
+busuanzi:
+  site_uv: false
+  site_pv: false
+  page_pv: false
+
+preloader:
+  enable: false
+
+enter_transitions: true
+rounded_corners_ui: true
+text_align_justify: true
+
+# 注入自定义样式（source/css/custom.css）
+inject:
+  head:
+    - <link rel="stylesheet" href="/css/custom.css">
+  bottom:
+
+# 正文版式：中文用这个字体栈，避免落到宋体发虚
+font:
+  global_font_size: 15px
+  font_family: '"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Source Han Sans SC",-apple-system,"Segoe UI",sans-serif'
+
+anchor:
+  auto_update: true
+  click_to_scroll: false
+
+# 主题色：赭石（和原站的 --accent 同一支）
+theme_color:
+  enable: true
+  main: '#8c5535'
+  paginator: '#8c5535'
+  button_hover: '#a9663f'
+  text_selection: '#dcc7b3'
+  link_color: '#8c5535'
+  meta_color: '#8a857c'
+  hr_color: '#ddd3c5'
+  code_foreground: '#9c5a36'
+  code_background: 'rgba(140,85,53,0.06)'
+  toc_color: '#8c5535'
+  blockquote_padding_color: '#8c5535'
+  blockquote_background_color: 'rgba(140,85,53,0.06)'
+  scrollbar_color: '#c9b7a3'

@@ -1,0 +1,7 @@
+node_modules/
+node_modules_bad/
+public/
+.deploy_git/
+db.json
+*.log
+_thumbs/

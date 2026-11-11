@@ -1,0 +1,128 @@
+/* ==========================================================
+   灯下 · 覆盖样式
+   放在 source/css/custom.css，构建时原样复制到 /css/custom.css
+   只改观感，不改结构；主题升级不会覆盖这里
+   ========================================================== */
+
+/* ---------- 1. 正文排版 ---------- */
+#article-container {
+  font-size: 16px;
+  line-height: 2.05;
+  letter-spacing: 0.01em;
+}
+
+/* 中文长文：段间距比行距略大一点，读起来有呼吸 */
+#article-container p {
+  margin: 0 0 1.15em;
+}
+
+/* 首行缩进两字，符合中文排版习惯；引用、列表、图注不缩进 */
+#article-container > p {
+  text-indent: 2em;
+}
+#article-container blockquote p,
+#article-container li p,
+#article-container .note p,
+#article-container figure p {
+  text-indent: 0;
+}
+
+/* 标题：字重收一点，字号拉开层级 */
+#article-container h1,
+#article-container h2,
+#article-container h3,
+#article-container h4 {
+  letter-spacing: 0.02em;
+  font-weight: 600;
+}
+
+#article-container h2 {
+  margin: 2.2em 0 1em;
+  padding-bottom: 0.4em;
+  border-bottom: 1px solid rgba(140, 85, 53, 0.14);
+  font-size: 1.32em;
+}
+
+#article-container h3 {
+  margin: 1.8em 0 0.8em;
+  font-size: 1.14em;
+}
+
+/* 引用：细竖线 + 极淡底，不用主题默认的粗色块 */
+#article-container blockquote {
+  margin: 1.6em 0;
+  padding: 0.9em 1.2em;
+  border-left: 3px solid var(--btn-bg, #8c5535);
+  border-radius: 0 6px 6px 0;
+  background: rgba(140, 85, 53, 0.05);
+  color: inherit;
+}
+
+/* 图片：圆角 + 极轻阴影，不抢文字 */
+#article-container img {
+  border-radius: 8px;
+  box-shadow: 0 2px 14px rgba(31, 30, 28, 0.07);
+}
+
+/* 分隔线用浅赭色，别用纯灰 */
+#article-container hr {
+  border-color: rgba(140, 85, 53, 0.18);
+  margin: 2.4em 0;
+}
+
+/* ---------- 2. 卡片与页面 ---------- */
+/* 卡片阴影柔化，纸感底色下用不着生硬投影 */
+.recent-post-item,
+#aside-content .card-widget,
+#page,
+#archive,
+.post-copyright {
+  box-shadow: 0 1px 3px rgba(31, 30, 28, 0.05), 0 6px 22px rgba(31, 30, 28, 0.04);
+}
+
+.recent-post-item {
+  border-radius: 10px;
+}
+
+/* 首页文章标题：字重稍重，日期压淡 */
+.recent-post-info .article-title {
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* 导航栏：去掉默认的透明渐变，和纸底融在一起 */
+#page-header.nav-fixed #nav {
+  background: rgba(251, 250, 247, 0.82);
+  backdrop-filter: saturate(160%) blur(10px);
+}
+
+/* ---------- 3. 暗色模式 ---------- */
+/* theme_color 只作用于亮色，暗色这里手动对齐同一支赭石（更亮一档） */
+[data-theme="dark"] {
+  --btn-bg: #cf9668;
+  --btn-hover-color: #dcab82;
+  --btn-color: #121212;
+}
+
+[data-theme="dark"] #article-container blockquote {
+  background: rgba(207, 150, 104, 0.08);
+}
+
+[data-theme="dark"] #page-header.nav-fixed #nav {
+  background: rgba(18, 18, 18, 0.82);
+}
+
+[data-theme="dark"] #article-container img {
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
+}
+
+/* ---------- 4. 小屏 ---------- */
+@media screen and (max-width: 768px) {
+  #article-container {
+    font-size: 15.5px;
+    line-height: 1.98;
+  }
+  #article-container > p {
+    text-indent: 2em;
+  }
+}

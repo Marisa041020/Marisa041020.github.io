@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
+  <rect width="240" height="240" fill="#f4efe6"/>
+  <circle cx="120" cy="120" r="112" fill="none" stroke="#e0d6c7" stroke-width="2"/>
+  <text x="120" y="120" text-anchor="middle" dominant-baseline="central"
+        font-family="Songti SC, SimSun, Noto Serif SC, serif"
+        font-size="112" fill="#8c5535">灯</text>
+</svg>

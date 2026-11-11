@@ -1,0 +1,88 @@
+# 站点基本信息
+title: 灯下
+subtitle: 把日子读得慢一点
+description: 一些关于读书、教书与生活的随笔。
+keywords:
+author: 灯下
+language: zh-CN
+timezone: Asia/Shanghai
+
+# 网址（决定 sitemap、RSS 里的绝对链接）
+url: https://notedown.top
+root: /
+
+# 文章网址。刻意保持和旧站一致（/posts/2026-10-12-xxx.html），
+# 这样以前分享出去的链接不会失效。
+permalink: posts/:year-:month-:day-:name.html
+permalink_defaults:
+
+pretty_urls:
+  trailing_index: false
+  trailing_html: false
+
+# 目录
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+skip_render:
+
+# 新建文章时的默认值
+new_post_name: :year-:month-:day-:title.md
+default_layout: post
+titlecase: false
+external_link:
+  enable: true
+  field: site
+  exclude:
+filename_case: 0
+render_drafts: false
+post_asset_folder: false
+relative_link: false
+future: true
+highlight:
+  enable: true
+  line_number: true
+  auto_detect: false
+  tab_replace: ''
+  wrap: true
+  hljs: false
+prismjs:
+  enable: false
+  preprocess: true
+  line_number: true
+  tab_replace: ''
+
+# 首页：每页 10 篇，按时间倒序
+index_generator:
+  path: ''
+  per_page: 10
+  order_by: -date
+
+per_page: 10
+pagination_dir: page
+
+# 主题
+theme: butterfly
+
+# 本地搜索（hexo-generator-searchdb 生成 search.xml）
+search:
+  path: search.xml
+  field: post
+  content: true
+  format: html
+
+# RSS：路径沿用旧站的 /feed.xml，老订阅不会断
+feed:
+  type: atom
+  path: feed.xml
+  limit: 20
+
+# 站点地图
+sitemap:
+  path: sitemap.xml
+
+date_format: YYYY年MM月D日
