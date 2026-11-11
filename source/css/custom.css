@@ -141,7 +141,7 @@
 }
 
 .photo-grid {
-  column-count: 3;
+  column-count: var(--photo-cols, 3);
   column-gap: 12px;
   margin: 0;
 }
@@ -182,7 +182,7 @@
 
 @media screen and (max-width: 900px) {
   .photo-grid {
-    column-count: 2;
+    column-count: min(2, var(--photo-cols, 3));
   }
 }
 

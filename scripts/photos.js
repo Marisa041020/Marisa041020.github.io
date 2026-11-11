@@ -198,7 +198,10 @@ hexo.extend.generator.register('photos', function () {
   if (photos.length === 0) {
     content += '<p class="photo-empty">' + escapeHtml(CONFIG.emptyHint) + '</p>';
   } else {
-    content += '<div class="photo-grid">' + photos.map(figureHtml).join('') + '</div>';
+    // 照片少时按实际张数定列数，不然 3 列只放 1 张会空出两列
+    const cols = Math.min(3, photos.length);
+    content += '<div class="photo-grid" style="--photo-cols:' + cols + '">'
+      + photos.map(figureHtml).join('') + '</div>';
   }
 
   return {
@@ -218,7 +221,8 @@ function buildHomeSection(photos) {
   html += '<h2>' + escapeHtml(CONFIG.homeTitle) + '</h2>';
   html += '<a href="/' + CONFIG.pagePath.replace(/index\.html$/, '') + '">全部照片 →</a>';
   html += '</div>';
-  html += '<div class="photo-grid home-grid">' + list.map(figureHtml).join('') + '</div>';
+  html += '<div class="photo-grid home-grid" style="--photo-cols:'
+    + Math.min(3, list.length) + '">' + list.map(figureHtml).join('') + '</div>';
   html += '</section>';
   return html;
 }

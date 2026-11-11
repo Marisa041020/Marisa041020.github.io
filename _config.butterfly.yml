@@ -244,7 +244,7 @@ text_align_justify: true
 # 注入自定义样式（source/css/custom.css）
 inject:
   head:
-    - <link rel="stylesheet" href="/css/custom.css?v=3">
+    - <link rel="stylesheet" href="/css/custom.css?v=4">
   bottom:
 
 # 正文版式：中文用这个字体栈，避免落到宋体发虚
