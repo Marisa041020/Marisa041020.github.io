@@ -130,7 +130,8 @@ aside:
       text: GitHub
       link: https://github.com/Marisa041020
   card_announcement:
-    enable: false
+    enable: true
+    content: '白天在中学教历史，晚上写字。<br>这里不追热点，也不定期更新。'
   card_recent_post:
     enable: true
     limit: 5
@@ -178,6 +179,21 @@ search:
     top_n_per_article: 1
     unescape: false
 
+# ---------- 标签插件 ----------
+# note 提示框（正文里用 {% note info %} ... {% endnote %}）
+note:
+  style: flat
+  icons: true
+  border_radius: 6
+  light_bg_offset: 0
+
+# mermaid 流程图：用到时才加载，历史时间轴/关系图都能画
+mermaid:
+  enable: true
+  code_write: false
+  open_in_new_tab: true
+  zoom_pan: true
+
 # ---------- 其他 ----------
 share:
   use:
@@ -187,9 +203,30 @@ comments:
   count: false
 
 busuanzi:
-  site_uv: false
-  site_pv: false
-  page_pv: false
+  site_uv: true
+  site_pv: true
+  page_pv: true
+
+# 字数统计 + 阅读时长（依赖 hexo-wordcount 插件，已在 package.json 里）
+wordcount:
+  enable: true
+  post_wordcount: true
+  min2read: true
+  total_wordcount: true
+
+# 图片懒加载：用浏览器原生 loading=lazy，不额外下载 JS
+lazyload:
+  enable: true
+  native: true
+  field: site
+  placeholder:
+  blur: false
+
+# 分隔线用小书图标，替代默认的纯灰横线
+hr_icon:
+  enable: true
+  icon: '\f02d'
+  icon_top:
 
 preloader:
   enable: false
