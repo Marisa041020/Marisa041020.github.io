@@ -131,8 +131,7 @@ aside:
       text: GitHub
       link: https://github.com/Marisa041020
   card_announcement:
-    enable: true
-    content: '白天在中学教历史，晚上写字。<br>这里不追热点，也不定期更新。'
+    enable: false
   card_recent_post:
     enable: true
     limit: 5

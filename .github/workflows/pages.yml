@@ -20,6 +20,9 @@ jobs:
     steps:
       - name: 检出源码
         uses: actions/checkout@v4
+        with:
+          # 拉全量历史：脚本要靠 git 提交时间给照片排序
+          fetch-depth: 0
 
       - name: 准备 Node
         uses: actions/setup-node@v4

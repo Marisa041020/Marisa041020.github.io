@@ -183,6 +183,74 @@
   background: rgba(207, 150, 104, 0.06);
 }
 
+/* 图片下方的一句描述 */
+.photo-grid figcaption {
+  margin-top: 6px;
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: #8a857c;
+  text-align: center;
+  letter-spacing: 0.01em;
+}
+
+/* ---------- 首页照片流 ---------- */
+.home-photos {
+  margin: 0 0 20px;
+  padding: 18px 18px 10px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(31, 30, 28, 0.05), 0 6px 22px rgba(31, 30, 28, 0.04);
+}
+
+.home-photos-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.home-photos-head h2 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #4a453f;
+}
+
+/* 标题前一小段赭石竖条，和正文分割线同一支 */
+.home-photos-head h2::before {
+  content: '';
+  display: inline-block;
+  width: 3px;
+  height: 13px;
+  margin-right: 8px;
+  background: #8c5535;
+  border-radius: 2px;
+  vertical-align: -1px;
+}
+
+.home-photos-head a {
+  font-size: 12.5px;
+  color: #8c5535;
+  white-space: nowrap;
+}
+
+.home-photos .home-grid {
+  column-gap: 10px;
+}
+
+.home-photos .home-grid figure {
+  margin-bottom: 10px;
+}
+
+[data-theme="dark"] .home-photos {
+  background: #1d1d1f;
+}
+
+[data-theme="dark"] .home-photos-head h2 {
+  color: #d8d3cb;
+}
+
 /* ---------- 5. 小屏 ---------- */
 @media screen and (max-width: 768px) {
   #article-container {
@@ -191,5 +259,20 @@
   }
   #article-container > p {
     text-indent: 2em;
+  }
+}
+
+/* 首页照片流在手机上保持两列，否则六张图会拉得很长 */
+@media screen and (max-width: 560px) {
+  .home-photos {
+    padding: 14px 14px 8px;
+  }
+
+  .home-photos .home-grid {
+    column-count: 2;
+  }
+
+  .home-photos .home-grid figcaption {
+    font-size: 11.5px;
   }
 }
