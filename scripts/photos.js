@@ -39,11 +39,20 @@ function escapeHtml(s) {
     .replace(/"/g, '&quot;');
 }
 
-/* ---------- 描述文件 ----------
-   格式：文件名 | 描述
-   例：  2026-11-梧桐-01.webp | 秋天操场边的那棵树
-   # 开头的行是注释，不带 | 的行表示这张不写描述
+/* ---------- 描述来源 ----------
+   两种，任选其一：
+   ① 直接写进文件名：名字__描述.webp
+      例 2026-11-11-窗台上的两本书__下午的光斜过来.webp
+      —— 上传时顺手写好，不用再打开任何文件
+   ② 事后补在 _captions.txt 里：文件名 | 描述
+      —— 文件名部分不区分大小写、忽略空格，也可以不写扩展名
+
+   两处都写时，_captions.txt 优先。
 */
+function normalizeKey(s) {
+  return String(s).replace(/\s+/g, '').toLowerCase();
+}
+
 function loadCaptions() {
   const p = path.join(hexo.source_dir, CONFIG.dir, CONFIG.captionsFile);
   const map = new Map();
@@ -57,11 +66,22 @@ function loadCaptions() {
     const key = (at === -1 ? line : line.slice(0, at)).trim();
     const cap = at === -1 ? '' : line.slice(at + 1).trim();
     if (!key) continue;
-    map.set(key, cap);
+    map.set(normalizeKey(key), cap);
     // 允许只写不带扩展名的文件名
-    map.set(key.replace(IMAGE_EXT, ''), cap);
+    map.set(normalizeKey(key.replace(IMAGE_EXT, '')), cap);
   }
   return map;
+}
+
+/* 从文件名里拆出「名字」和「内嵌描述」 */
+function parseName(name) {
+  const stem = name.replace(IMAGE_EXT, '');
+  const at = stem.indexOf('__');
+  if (at === -1) return { base: stem, inlineCaption: '' };
+  return {
+    base: stem.slice(0, at).trim(),
+    inlineCaption: stem.slice(at + 2).trim(),
+  };
 }
 
 /* ---------- 时间 ----------
@@ -109,10 +129,30 @@ function listPhotos() {
     .map((name) => {
       const rel = PHOTO_DIR_REL + '/' + name;
       const ts = commitTime(rel) || nameTime(name) || 0;
+      const { base, inlineCaption } = parseName(name);
+
+      // 提醒没压过的大图：整个相册页会一起加载，一张几 MB 就够拖慢
+      try {
+        const bytes = fs.statSync(path.join(hexo.source_dir, CONFIG.dir, name)).size;
+        if (bytes > 1.5 * 1024 * 1024) {
+          hexo.log.warn('[photos] %s 有 %s MB，太大了，建议先用 tools/压缩照片.bat 压一下',
+            name, (bytes / 1048576).toFixed(1));
+        }
+      } catch (e) { /* 忽略 */ }
+
+      // 描述：_captions.txt 优先，其次文件名里 __ 后面的部分
+      // 依次按「完整文件名 → 去掉扩展名 → 只到 __ 前面的名字」匹配
+      const fromFile = captions.get(normalizeKey(name))
+        || captions.get(normalizeKey(name.replace(IMAGE_EXT, '')))
+        || captions.get(normalizeKey(base))
+        || '';
+      const caption = (fromFile || inlineCaption || '').trim();
+
       return {
         name,
+        base,
         ts,
-        caption: (captions.get(name) || captions.get(name.replace(IMAGE_EXT, '')) || '').trim(),
+        caption,
         url: '/' + CONFIG.dir.replace(/^\/+|\/+$/g, '') + '/' + name,
       };
     });
@@ -122,7 +162,11 @@ function listPhotos() {
 
   // 描述文件里写了但找不到对应图片的，提示一下
   const known = new Set();
-  photos.forEach((p) => { known.add(p.name); known.add(p.name.replace(IMAGE_EXT, '')); });
+  photos.forEach((p) => {
+    known.add(normalizeKey(p.name));
+    known.add(normalizeKey(p.name.replace(IMAGE_EXT, '')));
+    known.add(normalizeKey(p.base));
+  });
   for (const key of captions.keys()) {
     if (!known.has(key)) {
       hexo.log.warn('[photos] _captions.txt 里的「%s」找不到对应图片', key);
@@ -133,7 +177,7 @@ function listPhotos() {
 }
 
 function figureHtml(p) {
-  const alt = escapeHtml(p.caption || p.name.replace(IMAGE_EXT, ''));
+  const alt = escapeHtml(p.caption || p.base);
   let html = '<figure><img src="' + escapeHtml(p.url) + '" alt="' + alt + '" loading="lazy">';
   if (p.caption) {
     html += '<figcaption>' + escapeHtml(p.caption) + '</figcaption>';
