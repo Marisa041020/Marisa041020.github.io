@@ -53,7 +53,74 @@
 
 ---
 
-## 二、写作语法（比旧站强不少）
+---
+
+## 二、上摄影作品（相册）
+
+导航栏的「相册」指向 `/photos/`。这个页面**不用手写**：构建时会自动扫描
+`source/img/photos/` 里的图片，按文件名排序铺成瀑布流。
+所以上照片只有两步：**压图 → 放进文件夹**。
+
+### 第一步：压缩（重要）
+
+手机原图一张 5–8MB，几十张就能把仓库撑大、把站点拖慢。
+用 `tools/压缩照片.bat` 批量处理：
+
+1. 把装有照片的**文件夹**拖到这个 bat 文件上
+2. 它会自动：按 EXIF 方向转正 → 长边压到 2048px → 转 WebP（质量 80）
+   → **清除 GPS 定位信息** → 输出到 `source/img/photos/`
+3. 结束时打印每张压缩前后的大小
+
+命令行也可以，参数自己调：
+
+```bash
+python tools/compress_photos.py "D:\照片\2026-11"              # 默认长边 2048、质量 80
+python tools/compress_photos.py "D:\照片\2026-11" -m 2560 -q 85
+python tools/compress_photos.py "D:\照片\2026-11" --keep-exif
+```
+
+目标是一张 200–400KB。横幅风景可以到 500KB，竖幅 250KB 左右就够看。
+
+### 第二步：传上去
+
+**方式一（推荐，全程网页）**
+
+打开 https://github.com/Marisa041020/Marisa041020.github.io/upload/main/source/img/photos
+把压好的 `.webp` 拖进去 → `Commit changes`。约 1 分钟后相册里就有这些图。
+
+**方式二（本地）**
+
+压完后在 `hexo` 目录双击 `publish.bat`。
+
+### 命名
+
+按文件名**升序**排列，所以用日期开头最直观：
+
+```
+2026-11-梧桐-01.webp
+2026-11-梧桐-02.webp
+2026-12-雪后操场-01.webp
+```
+
+中文、空格都能用，但**不要用 `_` 开头**（那会被当成被忽略的文件）。
+
+### 调整
+
+- 改相册标题、开头那句话：`scripts/photos.js` 顶部的 `CONFIG`，改 `title` / `intro`
+- 改列数：`source/css/custom.css` 里的 `.photo-grid { column-count }`，
+  默认 3 列，窄屏自动降到 2 列 / 1 列
+- 照片会**全部**铺出来。哪天超过一百张，再考虑按年份分页
+- 点图能放大（medium_zoom 已启用）
+
+### 不要做的事
+
+- **不要用 Git LFS**。GitHub Pages 不解析 LFS 指针，图片会直接 404
+- 不要把没压缩的原图直接传上来
+- 仓库建议控制在 1GB 内，单文件不能超过 100MB
+
+---
+
+## 三、写作语法（比旧站强不少）
 
 旧那套自写解析器只认得标题、粗体、引用、列表。现在换成标准 Markdown，
 之前写不了的都能用了：
@@ -85,7 +152,7 @@
 
 ---
 
-## 三、本地预览（可选）
+## 四、本地预览（可选）
 
 双击 **`preview.bat`**，浏览器打开 http://localhost:4000 。
 改完文件保存，页面会自动刷新。关掉黑窗口即停止。
@@ -94,7 +161,7 @@
 
 ---
 
-## 四、改外观
+## 五、改外观
 
 ### 换主题色
 
@@ -145,7 +212,7 @@ author: 灯下
 
 ---
 
-## 五、目录结构
+## 六、目录结构
 
 ```
 hexo/
@@ -157,12 +224,19 @@ hexo/
 ├─ publish.bat            本地提交并推送（可选）
 ├─ .github/workflows/
 │  └─ pages.yml           云端构建 + 发布，别删
+├─ scripts/
+│  └─ photos.js           相册页自动生成，别删
+├─ tools/
+│  ├─ compress_photos.py  批量压图脚本
+│  └─ 压缩照片.bat        双击/拖文件夹就能跑
 └─ source/
    ├─ _posts/             文章都在这
    ├─ about/index.md      关于页
    ├─ tags/index.md       标签总览页
    ├─ css/custom.css      自己的样式
-   ├─ img/                图片、头像、图标、banner
+   ├─ img/
+   │  ├─ photos/          相册照片放这里（放进去就自动上墙）
+   │  └─ ...              头像、图标、banner
    ├─ CNAME               notedown.top（绑域名用）
    └─ robots.txt          爬虫规则
 ```
@@ -171,7 +245,7 @@ hexo/
 
 ---
 
-## 六、常见问题
+## 七、常见问题
 
 **构建失败（Actions 红叉）**
 九成是 `_config.butterfly.yml` 的 YAML 缩进错了，或者颜色值没加引号。
@@ -193,7 +267,7 @@ hexo/
 
 ---
 
-## 七、和旧站的关系
+## 八、和旧站的关系
 
 - **文章网址不变**：`/posts/2026-10-12-yi-ben-shu-de-shi-jian.html` 这类地址照旧能用
 - **`/feed.xml`、`/sitemap.xml`、`/robots.txt` 都保留**

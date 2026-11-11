@@ -116,7 +116,74 @@
   box-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
 }
 
-/* ---------- 4. 小屏 ---------- */
+/* ---------- 4. 相册页 ---------- */
+/* 瀑布流用 CSS 多列实现：纵向堆叠、按列断行，适合竖幅横幅混排 */
+.photo-intro {
+  color: #6f6a62;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  margin: 0 0 1.6em;
+  text-align: center;
+  text-indent: 0 !important;
+}
+
+.photo-grid {
+  column-count: 3;
+  column-gap: 12px;
+  margin: 0;
+}
+
+.photo-grid figure {
+  margin: 0 0 12px;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.photo-grid img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(31, 30, 28, 0.06);
+  transition: opacity 0.25s ease;
+}
+
+.photo-grid img:hover {
+  opacity: 0.9;
+}
+
+/* 图片还没加载出来时占位，避免布局跳动 */
+.photo-grid figure {
+  background: rgba(140, 85, 53, 0.04);
+  border-radius: 6px;
+  min-height: 80px;
+}
+
+.photo-empty {
+  color: #8a857c;
+  font-size: 14px;
+  text-align: center;
+  padding: 3em 0;
+  text-indent: 0 !important;
+}
+
+@media screen and (max-width: 900px) {
+  .photo-grid {
+    column-count: 2;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .photo-grid {
+    column-count: 1;
+  }
+}
+
+[data-theme="dark"] .photo-grid figure {
+  background: rgba(207, 150, 104, 0.06);
+}
+
+/* ---------- 5. 小屏 ---------- */
 @media screen and (max-width: 768px) {
   #article-container {
     font-size: 15.5px;
