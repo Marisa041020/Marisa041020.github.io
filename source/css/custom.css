@@ -251,7 +251,71 @@
   color: #d8d3cb;
 }
 
-/* ---------- 5. 小屏 ---------- */
+/* ---------- 5. 配图 ---------- */
+/* {% fig %} / {% figs %} 标签的输出：图片在上、图注在下，整体居中 */
+.pfig {
+  margin: 2em auto;
+  text-align: center;
+}
+
+.pfig .pfig__media {
+  margin: 0;
+}
+
+.pfig .pfig__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 6px;
+  box-shadow: 0 3px 20px rgba(31, 30, 28, 0.1);
+}
+
+/* 单图默认占正文 62%：竖幅海报不至于铺满整屏 */
+.pfig--single {
+  max-width: var(--pfig-w, 62%);
+}
+
+/* 多图成排 */
+.pfig--group {
+  max-width: 100%;
+}
+
+.pfig__grid {
+  display: grid;
+  grid-template-columns: repeat(var(--pfig-cols, 3), minmax(0, 1fr));
+  gap: 12px;
+  align-items: start;
+}
+
+.pfig__cell {
+  margin: 0;
+}
+
+.pfig__cell .pfig__media img {
+  box-shadow: 0 2px 12px rgba(31, 30, 28, 0.08);
+}
+
+/* 总图注 */
+.pfig__caption {
+  margin: 0.8em auto 0;
+  max-width: 40em;
+  font-size: 0.86em;
+  line-height: 1.7;
+  color: var(--font-color);
+  opacity: 0.66;
+}
+
+/* 一排里每张图自己的小图注 */
+.pfig__cellcaption {
+  margin: 0.55em 0 0;
+  font-size: 0.78em;
+  line-height: 1.6;
+  color: var(--font-color);
+  opacity: 0.6;
+}
+
+/* ---------- 6. 小屏 ---------- */
 @media screen and (max-width: 768px) {
   #article-container {
     font-size: 15.5px;
@@ -274,5 +338,27 @@
 
   .home-photos .home-grid figcaption {
     font-size: 11.5px;
+  }
+}
+
+/* 配图在小屏上放宽一点：图注字号本来就小，图再窄就看不清了 */
+@media screen and (max-width: 768px) {
+  .pfig--single {
+    max-width: 84%;
+  }
+
+  .pfig__grid {
+    gap: 8px;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .pfig--single {
+    max-width: 100%;
+  }
+
+  /* 手机上三列四列挤成一团，统一压到两列（覆盖行内变量） */
+  .pfig--group {
+    --pfig-cols: 2 !important;
   }
 }
