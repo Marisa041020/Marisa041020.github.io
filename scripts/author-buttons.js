@@ -18,6 +18,7 @@ const EXTRA_BUTTONS = [
     text: '哔哩哔哩',
     title: '哔哩哔哩个人主页',
     external: true,
+    mod: 'bilibili', // 对应 CSS 里的 .card-info-btn--bilibili（B 站粉底）
   },
 ]
 
@@ -34,7 +35,8 @@ function esc(str) {
 function renderButton(btn) {
   const ext = btn.external ? ' target="_blank" rel="noopener noreferrer"' : ''
   const title = btn.title || btn.text
-  return `<a class="card-info-btn" href="${esc(btn.href)}"${ext} title="${esc(title)}">` +
+  const cls = btn.mod ? `card-info-btn card-info-btn--${btn.mod}` : 'card-info-btn'
+  return `<a class="${esc(cls)}" href="${esc(btn.href)}"${ext} title="${esc(title)}">` +
     `<i class="${esc(btn.icon)}"></i><span>${esc(btn.text)}</span></a>`
 }
 

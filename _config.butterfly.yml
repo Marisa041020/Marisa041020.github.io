@@ -19,7 +19,8 @@ menu:
 # 想加邮箱时补一行（换成真实地址）：
 # fas fa-envelope: mailto:you@example.com || 写信 || '#8c5535'
 social:
-  fab fa-github: https://github.com/Marisa041020 || GitHub || '#2b2b2b'
+  fab fa-github: https://github.com/Marisa041020 || GitHub
+  fab fa-bilibili: https://space.bilibili.com/52781172 || 哔哩哔哩 || '#fb7299'
 
 # ---------- 图片 ----------
 favicon: /img/favicon.svg
@@ -243,7 +244,7 @@ text_align_justify: true
 # 注入自定义样式（source/css/custom.css）
 inject:
   head:
-    - <link rel="stylesheet" href="/css/custom.css">
+    - <link rel="stylesheet" href="/css/custom.css?v=3">
   bottom:
 
 # 正文版式：中文用这个字体栈，避免落到宋体发虚

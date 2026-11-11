@@ -364,10 +364,18 @@
   margin-right: 5px;
 }
 
-/* 按钮已经覆盖了同样的入口，卡片里那排圆形社交图标就多余了。
-   只在卡片里隐藏，配置里的 social 仍然作用于手机端页头的图标 */
+/* 哔哩哔哩按钮用站标那支粉（#fb7299），和 GitHub 的蓝底区分开 */
+.card-info-btns > a.card-info-btn--bilibili {
+  background-color: #fb7299;
+}
+
+.card-info-btns > a.card-info-btn--bilibili:hover {
+  background-color: #ff8fb0;
+}
+
+/* 按钮下面那排纯图标入口，和按钮之间留一点呼吸 */
 .card-info .card-info-social-icons {
-  display: none;
+  margin-top: 12px;
 }
 
 /* ---------- 7. 小屏 ---------- */
