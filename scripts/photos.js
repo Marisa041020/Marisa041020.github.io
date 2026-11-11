@@ -84,6 +84,15 @@ function parseName(name) {
   };
 }
 
+/* 文件名开头的日期前缀只用来排序，不该显示在页面上
+   2026-11-11-《藻井》 -> 《藻井》 / 20261108-Bloom -> Bloom */
+const DATE_PREFIX = /^20\d{2}(?:-\d{2}-\d{2}|\d{4})[-_]?/;
+
+function displayTitle(base) {
+  const t = String(base).replace(DATE_PREFIX, '').trim();
+  return t || String(base);
+}
+
 /* ---------- 时间 ----------
    依次尝试：git 最后提交时间 -> 文件名里的日期 -> 文件修改时间
 */
@@ -130,6 +139,7 @@ function listPhotos() {
       const rel = PHOTO_DIR_REL + '/' + name;
       const ts = commitTime(rel) || nameTime(name) || 0;
       const { base, inlineCaption } = parseName(name);
+      const title = displayTitle(base);
 
       // 提醒没压过的大图：整个相册页会一起加载，一张几 MB 就够拖慢
       try {
@@ -141,16 +151,18 @@ function listPhotos() {
       } catch (e) { /* 忽略 */ }
 
       // 描述：_captions.txt 优先，其次文件名里 __ 后面的部分
-      // 依次按「完整文件名 → 去掉扩展名 → 只到 __ 前面的名字」匹配
+      // 依次按「完整文件名 → 去掉扩展名 → __ 前面的名字 → 去掉日期前缀的名字」匹配
       const fromFile = captions.get(normalizeKey(name))
         || captions.get(normalizeKey(name.replace(IMAGE_EXT, '')))
         || captions.get(normalizeKey(base))
+        || captions.get(normalizeKey(title))
         || '';
       const caption = (fromFile || inlineCaption || '').trim();
 
       return {
         name,
         base,
+        title,
         ts,
         caption,
         url: '/' + CONFIG.dir.replace(/^\/+|\/+$/g, '') + '/' + name,
@@ -166,6 +178,7 @@ function listPhotos() {
     known.add(normalizeKey(p.name));
     known.add(normalizeKey(p.name.replace(IMAGE_EXT, '')));
     known.add(normalizeKey(p.base));
+    known.add(normalizeKey(p.title));
   });
   for (const key of captions.keys()) {
     if (!known.has(key)) {
@@ -176,11 +189,17 @@ function listPhotos() {
   return photos;
 }
 
+/* ---------- 单张照片的 HTML ----------
+   名字在上（衬线字体）、描述在下（正文字体，字号更小），由 custom.css 控制
+*/
 function figureHtml(p) {
-  const alt = escapeHtml(p.caption || p.base);
+  const alt = escapeHtml([p.title, p.caption].filter(Boolean).join('，'));
   let html = '<figure><img src="' + escapeHtml(p.url) + '" alt="' + alt + '" loading="lazy">';
-  if (p.caption) {
-    html += '<figcaption>' + escapeHtml(p.caption) + '</figcaption>';
+  if (p.title || p.caption) {
+    html += '<figcaption>';
+    if (p.title) html += '<span class="photo-name">' + escapeHtml(p.title) + '</span>';
+    if (p.caption) html += '<span class="photo-desc">' + escapeHtml(p.caption) + '</span>';
+    html += '</figcaption>';
   }
   html += '</figure>';
   return html;

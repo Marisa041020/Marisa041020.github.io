@@ -150,6 +150,8 @@
   margin: 0 0 12px;
   break-inside: avoid;
   page-break-inside: avoid;
+  /* 图片还没加载出来时留一点高度，避免图注跳到顶上 */
+  min-height: 80px;
 }
 
 .photo-grid img {
@@ -157,19 +159,15 @@
   width: 100%;
   height: auto;
   border-radius: 6px;
+  /* 占位底色放在图片上，而不是 figure 上：
+     放 figure 上会在图注背后留一条淡蓝色底块，看着像没对齐的高亮条 */
+  background: rgba(14, 165, 233, 0.05);
   box-shadow: 0 1px 3px rgba(13, 62, 92, 0.06);
   transition: opacity 0.25s ease;
 }
 
 .photo-grid img:hover {
   opacity: 0.9;
-}
-
-/* 图片还没加载出来时占位，避免布局跳动 */
-.photo-grid figure {
-  background: rgba(14, 165, 233, 0.04);
-  border-radius: 6px;
-  min-height: 80px;
 }
 
 .photo-empty {
@@ -192,18 +190,46 @@
   }
 }
 
-[data-theme="dark"] .photo-grid figure {
-  background: rgba(56, 189, 248, 0.06);
+[data-theme="dark"] .photo-grid img {
+  background: rgba(56, 189, 248, 0.07);
 }
 
-/* 图片下方的一句描述 */
+/* 图片下方：名字在上、描述在下
+   名字用衬线字体（书卷气），描述用正文黑体，字号比名字小一号 */
 .photo-grid figcaption {
-  margin-top: 6px;
-  font-size: 12.5px;
-  line-height: 1.65;
-  color: #7a93a4;
+  margin-top: 7px;
   text-align: center;
+  text-indent: 0 !important;
+}
+
+.photo-grid .photo-name {
+  display: block;
+  font-family: Georgia, "Times New Roman", "Songti SC", "Noto Serif SC",
+    "Source Han Serif SC", "STSong", serif;
+  font-size: 14.5px;
+  line-height: 1.55;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #143d55;
+}
+
+.photo-grid .photo-desc {
+  display: block;
+  margin-top: 2px;
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+    "Source Han Sans SC", -apple-system, "Segoe UI", sans-serif;
+  font-size: 12px;
+  line-height: 1.6;
   letter-spacing: 0.01em;
+  color: #7a93a4;
+}
+
+[data-theme="dark"] .photo-grid .photo-name {
+  color: #d6e8f2;
+}
+
+[data-theme="dark"] .photo-grid .photo-desc {
+  color: #8fa9b8;
 }
 
 /* ---------- 首页照片流 ---------- */
