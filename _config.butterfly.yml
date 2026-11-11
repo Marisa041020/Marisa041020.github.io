@@ -15,9 +15,10 @@ menu:
   标签: /tags/ || fas fa-tags
   关于: /about/ || fas fa-user
 
+# 想加邮箱时补一行（换成真实地址）：
+# fas fa-envelope: mailto:you@example.com || 写信 || '#8c5535'
 social:
   fab fa-github: https://github.com/Marisa041020 || GitHub || '#2b2b2b'
-  fas fa-envelope: mailto:hello@example.com || 写信 || '#8c5535'
 
 # ---------- 图片 ----------
 favicon: /img/favicon.svg
@@ -48,7 +49,7 @@ cover:
 error_404:
   enable: true
   subtitle: 这一页没有留下来
-  background: /img/error-page.png
+  background: /img/error-page.svg
 
 # ---------- 首页 ----------
 subtitle:
