@@ -37,8 +37,13 @@ footer_img: false
 
 index_top_img_height: 360px
 
-# 站点背景色（纸感）
-background: '#fbfaf7'
+# 站点背景色（冷白，带一点天光）
+background: '#f5fafd'
+
+# 顶部图不再压一层黑：天蓝横幅自己就是底色，压了会发灰
+mask:
+  header: false
+  footer: true
 
 # 不启用封面图：没有配图时用卡片会空一块
 cover:
@@ -250,19 +255,21 @@ anchor:
   auto_update: true
   click_to_scroll: false
 
-# 主题色：赭石（和原站的 --accent 同一支）
+# 主题色：天蓝 + 白
+# main 用在按钮底、标签悬停这类要压白字的场景，所以取 sky-500 而不是更浅的 sky-300；
+# 正文里的链接用更深的 sky-600，白底上才够清楚
 theme_color:
   enable: true
-  main: '#8c5535'
-  paginator: '#8c5535'
-  button_hover: '#a9663f'
-  text_selection: '#dcc7b3'
-  link_color: '#8c5535'
-  meta_color: '#8a857c'
-  hr_color: '#ddd3c5'
-  code_foreground: '#9c5a36'
-  code_background: 'rgba(140,85,53,0.06)'
-  toc_color: '#8c5535'
-  blockquote_padding_color: '#8c5535'
-  blockquote_background_color: 'rgba(140,85,53,0.06)'
-  scrollbar_color: '#c9b7a3'
+  main: '#0ea5e9'
+  paginator: '#0ea5e9'
+  button_hover: '#38bdf8'
+  text_selection: '#bae6fd'
+  link_color: '#0284c7'
+  meta_color: '#7c93a4'
+  hr_color: '#cfe8f8'
+  code_foreground: '#0369a1'
+  code_background: 'rgba(14,165,233,0.07)'
+  toc_color: '#0284c7'
+  blockquote_padding_color: '#7dd3fc'
+  blockquote_background_color: 'rgba(14,165,233,0.06)'
+  scrollbar_color: '#bae6fd'

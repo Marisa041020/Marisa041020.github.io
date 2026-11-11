@@ -39,7 +39,7 @@
 #article-container h2 {
   margin: 2.2em 0 1em;
   padding-bottom: 0.4em;
-  border-bottom: 1px solid rgba(140, 85, 53, 0.14);
+  border-bottom: 1px solid rgba(14, 165, 233, 0.14);
   font-size: 1.32em;
 }
 
@@ -52,32 +52,32 @@
 #article-container blockquote {
   margin: 1.6em 0;
   padding: 0.9em 1.2em;
-  border-left: 3px solid var(--btn-bg, #8c5535);
+  border-left: 3px solid var(--btn-bg, #0284c7);
   border-radius: 0 6px 6px 0;
-  background: rgba(140, 85, 53, 0.05);
+  background: rgba(14, 165, 233, 0.05);
   color: inherit;
 }
 
 /* 图片：圆角 + 极轻阴影，不抢文字 */
 #article-container img {
   border-radius: 8px;
-  box-shadow: 0 2px 14px rgba(31, 30, 28, 0.07);
+  box-shadow: 0 2px 14px rgba(13, 62, 92, 0.07);
 }
 
-/* 分隔线用浅赭色，别用纯灰 */
+/* 分隔线用浅天蓝，别用纯灰 */
 #article-container hr {
-  border-color: rgba(140, 85, 53, 0.18);
+  border-color: rgba(14, 165, 233, 0.18);
   margin: 2.4em 0;
 }
 
 /* ---------- 2. 卡片与页面 ---------- */
-/* 卡片阴影柔化，纸感底色下用不着生硬投影 */
+/* 卡片阴影柔化，冷白底上不用生硬投影 */
 .recent-post-item,
 #aside-content .card-widget,
 #page,
 #archive,
 .post-copyright {
-  box-shadow: 0 1px 3px rgba(31, 30, 28, 0.05), 0 6px 22px rgba(31, 30, 28, 0.04);
+  box-shadow: 0 1px 3px rgba(13, 62, 92, 0.05), 0 6px 22px rgba(13, 62, 92, 0.04);
 }
 
 .recent-post-item {
@@ -90,22 +90,35 @@
   letter-spacing: 0.01em;
 }
 
-/* 导航栏：去掉默认的透明渐变，和纸底融在一起 */
+/* 导航栏：去掉默认的透明渐变，和冷白底融在一起 */
 #page-header.nav-fixed #nav {
-  background: rgba(251, 250, 247, 0.82);
+  background: rgba(255, 255, 255, 0.86);
   backdrop-filter: saturate(160%) blur(10px);
 }
 
 /* ---------- 3. 暗色模式 ---------- */
-/* theme_color 只作用于亮色，暗色这里手动对齐同一支赭石（更亮一档） */
+/* theme_color 只作用于亮色，暗色这里手动对齐同一支天蓝（更亮一档） */
 [data-theme="dark"] {
-  --btn-bg: #cf9668;
-  --btn-hover-color: #dcab82;
-  --btn-color: #121212;
+  --global-bg: #0e1a22;
+  --card-bg: #16232c;
+  --sidebar-bg: #16232c;
+  --btn-bg: #38bdf8;
+  --btn-hover-color: #7dd3fc;
+  --btn-color: #06202e;
+}
+
+/* 暗色下主题会在背景层上盖 70% 黑纱，浅色底会被压成一片灰；
+   这里直接把背景层压成深色，并把那层纱去掉 */
+[data-theme="dark"] #web_bg {
+  background: #0e1a22 !important;
+}
+
+[data-theme="dark"] #web_bg:before {
+  background-color: transparent;
 }
 
 [data-theme="dark"] #article-container blockquote {
-  background: rgba(207, 150, 104, 0.08);
+  background: rgba(56, 189, 248, 0.08);
 }
 
 [data-theme="dark"] #page-header.nav-fixed #nav {
@@ -119,7 +132,7 @@
 /* ---------- 4. 相册页 ---------- */
 /* 瀑布流用 CSS 多列实现：纵向堆叠、按列断行，适合竖幅横幅混排 */
 .photo-intro {
-  color: #6f6a62;
+  color: #5c7d92;
   font-size: 14px;
   letter-spacing: 0.02em;
   margin: 0 0 1.6em;
@@ -144,7 +157,7 @@
   width: 100%;
   height: auto;
   border-radius: 6px;
-  box-shadow: 0 1px 3px rgba(31, 30, 28, 0.06);
+  box-shadow: 0 1px 3px rgba(13, 62, 92, 0.06);
   transition: opacity 0.25s ease;
 }
 
@@ -154,13 +167,13 @@
 
 /* 图片还没加载出来时占位，避免布局跳动 */
 .photo-grid figure {
-  background: rgba(140, 85, 53, 0.04);
+  background: rgba(14, 165, 233, 0.04);
   border-radius: 6px;
   min-height: 80px;
 }
 
 .photo-empty {
-  color: #8a857c;
+  color: #7a93a4;
   font-size: 14px;
   text-align: center;
   padding: 3em 0;
@@ -180,7 +193,7 @@
 }
 
 [data-theme="dark"] .photo-grid figure {
-  background: rgba(207, 150, 104, 0.06);
+  background: rgba(56, 189, 248, 0.06);
 }
 
 /* 图片下方的一句描述 */
@@ -188,7 +201,7 @@
   margin-top: 6px;
   font-size: 12.5px;
   line-height: 1.65;
-  color: #8a857c;
+  color: #7a93a4;
   text-align: center;
   letter-spacing: 0.01em;
 }
@@ -199,7 +212,7 @@
   padding: 18px 18px 10px;
   background: #fff;
   border-radius: 10px;
-  box-shadow: 0 1px 3px rgba(31, 30, 28, 0.05), 0 6px 22px rgba(31, 30, 28, 0.04);
+  box-shadow: 0 1px 3px rgba(13, 62, 92, 0.05), 0 6px 22px rgba(13, 62, 92, 0.04);
 }
 
 .home-photos-head {
@@ -214,24 +227,24 @@
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.04em;
-  color: #4a453f;
+  color: #143d55;
 }
 
-/* 标题前一小段赭石竖条，和正文分割线同一支 */
+/* 标题前一小段天蓝竖条，和正文分割线同一支 */
 .home-photos-head h2::before {
   content: '';
   display: inline-block;
   width: 3px;
   height: 13px;
   margin-right: 8px;
-  background: #8c5535;
+  background: #0284c7;
   border-radius: 2px;
   vertical-align: -1px;
 }
 
 .home-photos-head a {
   font-size: 12.5px;
-  color: #8c5535;
+  color: #0284c7;
   white-space: nowrap;
 }
 
@@ -244,11 +257,11 @@
 }
 
 [data-theme="dark"] .home-photos {
-  background: #1d1d1f;
+  background: #16232c;
 }
 
 [data-theme="dark"] .home-photos-head h2 {
-  color: #d8d3cb;
+  color: #d6e8f2;
 }
 
 /* ---------- 5. 配图 ---------- */
@@ -268,7 +281,7 @@
   height: auto;
   margin: 0 auto;
   border-radius: 6px;
-  box-shadow: 0 3px 20px rgba(31, 30, 28, 0.1);
+  box-shadow: 0 3px 20px rgba(13, 62, 92, 0.1);
 }
 
 /* 单图默认占正文 62%：竖幅海报不至于铺满整屏 */
@@ -293,7 +306,7 @@
 }
 
 .pfig__cell .pfig__media img {
-  box-shadow: 0 2px 12px rgba(31, 30, 28, 0.08);
+  box-shadow: 0 2px 12px rgba(13, 62, 92, 0.08);
 }
 
 /* 总图注 */

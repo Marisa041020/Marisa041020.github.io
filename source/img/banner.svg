@@ -1,8 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 520" preserveAspectRatio="xMidYMid slice">
-  <rect width="1600" height="520" fill="#2e2a25"/>
-  <circle cx="1268" cy="196" r="330" fill="#342f28"/>
-  <circle cx="1268" cy="196" r="330" fill="none" stroke="#453d33" stroke-width="1"/>
-  <circle cx="1268" cy="196" r="196" fill="none" stroke="#42392f" stroke-width="1"/>
-  <path d="M0 452 H1600" stroke="#3d362d" stroke-width="1"/>
-  <path d="M0 470 H1600" stroke="#332d25" stroke-width="1"/>
+  <defs>
+    <linearGradient id="sky" x1="0.1" y1="0" x2="0.5" y2="1">
+      <stop offset="0" stop-color="#4cc3f2"/>
+      <stop offset="0.45" stop-color="#149fe0"/>
+      <stop offset="1" stop-color="#0877ae"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="520" fill="url(#sky)"/>
+
+  <!-- 右侧那团光，位置和原来那盏灯一致，只是换成了云隙里的白光 -->
+  <circle cx="1268" cy="196" r="330" fill="#ffffff" fill-opacity="0.06"/>
+  <circle cx="1268" cy="196" r="330" fill="none" stroke="#ffffff" stroke-opacity="0.22" stroke-width="1"/>
+  <circle cx="1268" cy="196" r="196" fill="none" stroke="#ffffff" stroke-opacity="0.16" stroke-width="1"/>
+  <circle cx="1268" cy="196" r="92" fill="none" stroke="#ffffff" stroke-opacity="0.11" stroke-width="1"/>
+
+  <!-- 底部两道细线，压住画面下缘 -->
+  <path d="M0 452 H1600" stroke="#ffffff" stroke-opacity="0.16" stroke-width="1"/>
+  <path d="M0 470 H1600" stroke="#ffffff" stroke-opacity="0.1" stroke-width="1"/>
 </svg>

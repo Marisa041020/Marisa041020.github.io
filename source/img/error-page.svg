@@ -1,23 +1,28 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
   <defs>
+    <linearGradient id="sky" x1="0.1" y1="0" x2="0.5" y2="1">
+      <stop offset="0" stop-color="#4cc3f2"/>
+      <stop offset="0.45" stop-color="#149fe0"/>
+      <stop offset="1" stop-color="#0877ae"/>
+    </linearGradient>
     <radialGradient id="lamp" cx="1150" cy="300" r="620" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#4a4034" stop-opacity="0.95"/>
-      <stop offset="0.55" stop-color="#37312a" stop-opacity="0.6"/>
-      <stop offset="1" stop-color="#2e2a25" stop-opacity="0"/>
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.16"/>
+      <stop offset="0.55" stop-color="#ffffff" stop-opacity="0.07"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
     </radialGradient>
   </defs>
 
-  <rect width="1600" height="900" fill="#2e2a25"/>
+  <rect width="1600" height="900" fill="url(#sky)"/>
   <rect width="1600" height="900" fill="url(#lamp)"/>
 
-  <circle cx="1150" cy="300" r="330" fill="none" stroke="#453d33" stroke-width="1"/>
-  <circle cx="1150" cy="300" r="196" fill="none" stroke="#42392f" stroke-width="1"/>
-  <circle cx="1150" cy="300" r="92" fill="none" stroke="#4d4438" stroke-width="1"/>
+  <circle cx="1150" cy="300" r="330" fill="none" stroke="#ffffff" stroke-opacity="0.22" stroke-width="1"/>
+  <circle cx="1150" cy="300" r="196" fill="none" stroke="#ffffff" stroke-opacity="0.17" stroke-width="1"/>
+  <circle cx="1150" cy="300" r="92" fill="none" stroke="#ffffff" stroke-opacity="0.12" stroke-width="1"/>
 
-  <path d="M0 700 H1600" stroke="#3d362d" stroke-width="1"/>
-  <path d="M0 726 H1600" stroke="#332d25" stroke-width="1"/>
-  <path d="M0 752 H1600" stroke="#2f2a23" stroke-width="1"/>
+  <path d="M0 700 H1600" stroke="#ffffff" stroke-opacity="0.16" stroke-width="1"/>
+  <path d="M0 726 H1600" stroke="#ffffff" stroke-opacity="0.11" stroke-width="1"/>
+  <path d="M0 752 H1600" stroke="#ffffff" stroke-opacity="0.07" stroke-width="1"/>
 
-  <path d="M262 0 V900" stroke="#332d25" stroke-width="1"/>
-  <path d="M1600 300 H1180" stroke="#3a332a" stroke-width="1"/>
+  <path d="M262 0 V900" stroke="#ffffff" stroke-opacity="0.08" stroke-width="1"/>
+  <path d="M1600 300 H1180" stroke="#ffffff" stroke-opacity="0.08" stroke-width="1"/>
 </svg>

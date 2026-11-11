@@ -246,15 +246,23 @@ python tools/compress_photos.py "D:\照片\2026-11" --keep-exif
 ```yaml
 theme_color:
   enable: true
-  main: '#8c5535'      # 主色：按钮、链接、强调
+  main: '#0ea5e9'      # 主色：按钮底、标签悬停
+  link_color: '#0284c7' # 正文里的链接，比主色深一档，白底上才够清楚
   ...
 ```
 
-改颜色值、`Commit changes`，一分钟生效。现在是**赭石**（旧站也是这一支）。
+现在整套是**天蓝 + 白**：页面底 `#f5fafd`（冷白，带一点天光）、卡片纯白、
+强调色 `#0ea5e9`。换颜色时记住一条：`main` 要压在白色文字底下，
+所以别选太浅的蓝，否则按钮上的白字会糊；正文链接再深一档更保险。
 
-- 更清冷：`#3f5e6b`（青灰）
-- 更沉：`#4a4237`（墨褐）
-- 更暖：`#9a4c3a`（铁锈红）
+几个现成的替代色：
+
+- 更淡：`main: '#38bdf8'`、`link_color: '#0369a1'`
+- 更沉：`main: '#0369a1'`、`link_color: '#075985'`
+- 换色系：`main: '#8b5cf6'`（紫）、`'#10b981'`（绿），`link_color` 相应加深
+
+改完记得同步改 `source/css/custom.css` 里那些写死的 `rgba(14, 165, 233, ...)`
+（分隔线、引用底、阴影），否则会新色配旧色。
 
 ### 改细节样式
 
@@ -263,8 +271,8 @@ theme_color:
 
 ### 换首页大图
 
-`source/img/banner.svg` 是现在那张深色底图。换成自己的照片：
-把 `photo.jpg` 传到 `source/img/`，然后把 `_config.butterfly.yml` 里的
+`source/img/banner.svg` 是现在那张天蓝渐变的底图（首页、归档、标签、关于页共用）。
+换成自己的照片：把 `photo.jpg` 传到 `source/img/`，然后把 `_config.butterfly.yml` 里的
 
 ```yaml
 default_top_img: /img/banner.svg
@@ -280,10 +288,10 @@ index_img: /img/banner.svg
 `_config.yml` 顶部：
 
 ```yaml
-title: 灯下
-subtitle: 把日子读得慢一点
-description: 一些关于读书、教书与生活的随笔。
-author: 灯下
+title: 一般路过魔法使的个人博客
+subtitle: 给情绪一个出口
+description: 列车终将驶向下一站
+author: 一般路过魔法使
 ```
 
 ---
