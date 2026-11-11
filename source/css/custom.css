@@ -328,7 +328,49 @@
   opacity: 0.6;
 }
 
-/* ---------- 6. 小屏 ---------- */
+/* ---------- 6. 作者卡按钮 ---------- */
+/* 卡片里并排放几个跳转按钮（GitHub / 哔哩哔哩），由 scripts/author-buttons.js 生成。
+   主题那条 #aside-content .card-info #card-info-btn 带了 id，优先级很高，
+   所以 margin-top 用 !important 压掉，两个按钮才能对齐 */
+.card-info-btns {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.card-info-btns > a {
+  flex: 1 1 0;
+  min-width: 0;
+  display: block;
+  margin-top: 0 !important;
+  background-color: var(--btn-bg);
+  color: var(--btn-color);
+  text-align: center;
+  line-height: 2.4;
+  font-size: 13.5px;
+  border-radius: 7px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background-color 0.2s ease;
+}
+
+.card-info-btns > a:hover {
+  background-color: var(--btn-hover-color);
+  color: var(--btn-color);
+}
+
+.card-info-btns i {
+  margin-right: 5px;
+}
+
+/* 按钮已经覆盖了同样的入口，卡片里那排圆形社交图标就多余了。
+   只在卡片里隐藏，配置里的 social 仍然作用于手机端页头的图标 */
+.card-info .card-info-social-icons {
+  display: none;
+}
+
+/* ---------- 7. 小屏 ---------- */
 @media screen and (max-width: 768px) {
   #article-container {
     font-size: 15.5px;
