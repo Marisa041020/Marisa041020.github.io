@@ -25,7 +25,7 @@ social:
 favicon: /img/favicon.svg
 
 avatar:
-  img: /img/avatar.svg
+  img: /img/avatar.webp
   effect: false
 
 disable_top_img: false
@@ -124,7 +124,7 @@ aside:
     category: false
   card_author:
     enable: true
-    description: 白天在中学教历史，晚上写字。
+    description: 列车终将驶向下一站
     button:
       enable: true
       icon: fab fa-github
